@@ -40,6 +40,10 @@ $ influx
 >create database <데이터베이스이름>
 확인 : show databases 
 ```
+## influxdb import with python
+```
+pip install influxdb
+```
 
 # Grafana Installation
 
@@ -67,42 +71,4 @@ sudo apt-get update && sudo apt-get install grafana -y
 ## 5. Run the following command to server start
 ```
 sudo systemctl start grafana-server
-```
-## influxdb import with python
-```
-pip install influxdb
-```
-  - hint: See PEP 668 for the detailed specification.
-```
-  sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
-```
-
-# TelegramBot
-```
-  pip install python-telegram-bot --upgrade
-  git clone https://github.com/python-telegram-bot/python-telegram-bot
-  pip install python-telegram-bot[job-queue] --pre
-```
-## TelegramBot Docs
-  - https://docs.python-telegram-bot.org/en/stable/telegram.ext.jobqueue.html
-
-## PI 카메라 연결
-  - Legacy Camera disable
-```
-  libcamera-hello -t 0
-```
-  - Python Lib 설치
-```
-  pip install picamera2
-```
-  - Error
-```
-libEGL warning : DRI2: failed to authenticate
-Made X/EGL preview window
-[1773] INFO Camera camera_manager.cpp:297 libcamera v0.0.5+83-bde9b04f
-ERROR: *** no cameras available ***
-```
-  - 참고
-```
-  https://github.com/raspberrypi/picamera2/blob/main/examples/capture_png.py
 ```
