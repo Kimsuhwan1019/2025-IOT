@@ -6,7 +6,7 @@ Arduino 미세먼지 센서(GP2Y1010AU0F)로 측정한 데이터를 Python을 �
 
 이 프로젝트는 GP2Y1010AU0F 미세먼지 센서를 Arduino로 제어하여 먼지 농도를 측정하고, Python 스크립트를 통해 시리얼 통신으로 데이터를 수집하여 InfluxDB 시계열 데이터베이스에 저장하는 시스템입니다.
 
-## 🏗️ 시스템 구조
+## 🏗️ 시스템 구조 
 
 ```
 Arduino (GP2Y1010AU0F) → Serial → Python Script → InfluxDB
