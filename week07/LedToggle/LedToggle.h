@@ -1,18 +1,28 @@
+// LedToggle í´ë˜ìŠ¤ í—¤ë” íŒŒì¼
+// LEDì˜ í† ê¸€ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬
+
 #ifndef LedToggle_h
 #define LedToggle_h
-
 #include "Arduino.h"
 
-	class LedToggle{
-	public:
-		LedToggle(int pin);		//»ı¼ºÀÚ 
-		LedToggle(int pin, unsigned long delayTime);	//»ı¼ºÀÚ 
-		vold toggle();			//LED »óÅÂ Åä±Û 
-		
-	private:
-		int _pin;				//private º¯¼öÀÇ °æ¿ì _ ÀÛ¼º 
-		bool _state;			// '_'°¡ ÇÊ¼ö´Â X 
-		unsigned long _delayTime;
-};								//Å¬·¡½º´Â ÇÔ¼ö°¡ ¾Æ´Ï¶ó ¸í·É¾î ÀÌ¹Ç·Î ³¡¿¡ ¼¼¹ÌÄİ·Ğ[;]À» ºÙÀÎ´Ù. 
+// LedToggle í´ë˜ìŠ¤
+// LEDì˜ ìƒíƒœë¥¼ í† ê¸€(ì¼œê¸°/ë„ê¸°)í•˜ëŠ” ê¸°ëŠ¥ì„ ì œê³µ
+class LedToggle{
+public:
+	// ìƒì„±ì 1: í•€ ë²ˆí˜¸ë§Œ ì§€ì •
+	LedToggle(int pin);
+	
+	// ìƒì„±ì 2: í•€ ë²ˆí˜¸ì™€ ì§€ì—° ì‹œê°„ ì§€ì •
+	LedToggle(int pin, unsigned long delayTime);
+	
+        // LED ìƒíƒœ í† ê¸€ í•¨ìˆ˜
+        // í˜„ì¬ ìƒíƒœì™€ ë°˜ëŒ€ë¡œ ë³€ê²½ (ON->OFF, OFF->ON)
+	void toggle();
+	
+private:
+	int _pin;                    // LEDê°€ ì—°ê²°ëœ í•€ ë²ˆí˜¸ (private ë³€ìˆ˜ëŠ” _ ì ‘ë‘ì‚¬ ì‚¬ìš©)
+	bool _state;                 // í˜„ì¬ LED ìƒíƒœ (true: ON, false: OFF)
+	unsigned long _delayTime;    // í† ê¸€ ì‹œ ì§€ì—° ì‹œê°„ (ë°€ë¦¬ì´ˆ)
+};
 
 #endif
