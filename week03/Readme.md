@@ -45,3 +45,82 @@ Arduino (GP2Y1010AU0F) → Serial → Python Script → InfluxDB
 - **데이터 파싱**: 수신된 문자열에서 센서 값 추출
 - **InfluxDB 연동**: 시계열 데이터베이스에 실시간 저장
 
+
+## 🚀 설치 및 실행
+
+### 1. 환경 설정
+
+#### Python 패키지 설치
+```bash
+pip install influxdb-client pyserial
+```
+
+#### InfluxDB 2.x 설치 및 설정
+1. InfluxDB 2.x를 로컬에 설치
+2. 조직(Organization) 생성: `test`
+3. 버킷(Bucket) 생성: `dust`
+4. API 토큰 생성 및 복사
+
+### 2. 설정 파일 수정
+
+`dust.py`에서 다음 설정을 환경에 맞게 수정:
+
+```python
+# InfluxDB 설정
+influxdb_url = "http://localhost:8086"
+influxdb_token = "YOUR_TOKEN_HERE"  # 생성한 토큰으로 변경
+influxdb_org = "test"
+influxdb_bucket = "dust"
+
+# 시리얼 포트 설정
+serial_port = "com16"  # 실제 Arduino 포트로 변경 (Linux: /dev/ttyUSB0)
+```
+
+### 3. 실행
+
+1. **Arduino 코드 업로드**
+   ```bash
+   # Arduino IDE에서 dust.ino 업로드
+   ```
+
+2. **Python 스크립트 실행**
+   ```bash
+   python dust.py
+   ```
+
+## 📊 데이터 형식
+
+### Arduino 시리얼 출력
+```
+dust = 45.2
+dust = 38.7
+dust = 52.1
+```
+
+### InfluxDB 저장 형식
+```
+sensor_data,device=arduino dust=45.2
+```
+
+## 📈 측정 원리
+
+1. **LED 펄스 생성**: 적외선 LED를 280μs 동안 켜서 먼지 입자 조명
+2. **센서 값 읽기**: 40μs 후 포토다이오드에서 반사광 강도 측정
+3. **전압 변환**: 아날로그 값(0-1023)을 전압(0-5V)으로 변환
+4. **농도 계산**: `dustDensity = (voltage - 0.3) / 0.005` 공식 적용
+
+## ⚙️ 기술 사양
+
+- **측정 범위**: 0-500 μg/m³
+- **측정 주기**: 1초
+- **동작 전압**: 5V
+- **인터페이스**: 아날로그 출력
+- **응답 시간**: 10초
+  
+
+## 📊 데이터 시각화
+
+InfluxDB에 저장된 데이터는 다음 도구들로 시각화 가능:
+- **InfluxDB UI**: 웹 브라우저에서 `http://localhost:8086` 접속
+- **Grafana**: 대시보드 생성으로 실시간 모니터링
+- **Chronograf**: InfluxDB 전용 시각화 도구
