@@ -30,6 +30,12 @@ $ vim ~/.bashrc
 ```
 $ source ~/.bashrc
 ```
+
+## 📁 환경 설정 파일: `.bashrc`
+
+`.bashrc`는 사용자가 터미널을 열 때 자동으로 실행되는 설정 파일입니다. 여기에 필요한 환경 변수나 스크립트를 등록하면, 매번 수동 설정할 필요 없이 자동으로 적용됩니다.
+
+
 ### JNI 파일 복사
 ```
 $ git clone https://github.com/sonnonet/jni.git
